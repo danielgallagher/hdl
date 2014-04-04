@@ -33,7 +33,7 @@
   set_property -dict [list CONFIG.C_2D_TRANSFER {0}] $axi_ad9122_dma
   set_property -dict [list CONFIG.C_CYCLIC {1}] $axi_ad9122_dma
   set_property -dict [list CONFIG.C_ADDR_ALIGN_BITS {3}] $axi_ad9122_dma
-  set_property -dict [list CONFIG.C_DMA_DATA_WIDTH_DEST {64}] $axi_ad9122_dma
+  set_property -dict [list CONFIG.C_DMA_DATA_WIDTH_DEST {128}] $axi_ad9122_dma
 
 if {$sys_zynq == 1} {
   set axi_ad9122_dma_interconnect [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_ad9122_dma_interconnect]
@@ -110,7 +110,7 @@ if {$sys_zynq == 0} {
   connect_bd_net -net axi_ad9122_dac_data_out_p   [get_bd_ports dac_data_out_p]                     [get_bd_pins axi_ad9122/dac_data_out_p]
   connect_bd_net -net axi_ad9122_dac_data_out_n   [get_bd_ports dac_data_out_n]                     [get_bd_pins axi_ad9122/dac_data_out_n]
   connect_bd_net -net axi_ad9122_dac_drd          [get_bd_pins axi_ad9122/dac_drd]                  [get_bd_pins axi_ad9122_dma/fifo_rd_en]
-  connect_bd_net -net axi_ad9122_dac_ddata        [get_bd_pins axi_ad9122/dac_ddata_64]             [get_bd_pins axi_ad9122_dma/fifo_rd_dout]
+  connect_bd_net -net axi_ad9122_dac_ddata        [get_bd_pins axi_ad9122/dac_ddata]             [get_bd_pins axi_ad9122_dma/fifo_rd_dout]
   connect_bd_net -net axi_ad9122_dac_dunf         [get_bd_pins axi_ad9122/dac_dunf]                 [get_bd_pins axi_ad9122_dma/fifo_rd_underflow]
   connect_bd_net -net axi_ad9122_dma_irq          [get_bd_pins axi_ad9122_dma/irq]                  [get_bd_pins sys_concat_intc/In3]
 
